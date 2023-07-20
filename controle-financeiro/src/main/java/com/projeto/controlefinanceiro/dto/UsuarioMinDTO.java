@@ -2,7 +2,7 @@ package com.projeto.controlefinanceiro.dto;
 
 import com.projeto.controlefinanceiro.entities.Usuario;
 
-public class UsuarioDTO {
+public class UsuarioMinDTO {
 
 	private Long id;
 	private String nome;
@@ -10,10 +10,7 @@ public class UsuarioDTO {
 	private String senha;
 	private Long telefone;
 	
-	public UsuarioDTO() {
-	}
-
-	public UsuarioDTO(Usuario entity) {
+	public UsuarioMinDTO(Usuario entity) {
 		this.id = entity.getId();
 		this.nome = entity.getNome();
 		this.email = entity.getEmail();
@@ -40,7 +37,8 @@ public class UsuarioDTO {
 	public Long getTelefone() {
 		return telefone;
 	}
-	
-	
+
+
+
 	
 }

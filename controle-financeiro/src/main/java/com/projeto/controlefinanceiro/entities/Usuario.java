@@ -1,11 +1,18 @@
 package com.projeto.controlefinanceiro.entities;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,26 +23,27 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
+	
+	@Column(unique = true)
 	private String email;
 	private String senha;
-	private Long telefone;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "tb_usuario_role",
+		joinColumns = @JoinColumn(name = "usuario_id"),
+		inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles = new HashSet<>();
 	
 	public Usuario() {
 	}
 
-	public Usuario(Long id, String nome, String email, String senha, Long telefone) {
+	public Usuario(Long id, String nome, String email, String senha) {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
-		this.telefone = telefone;
 	}
 	
-	public Usuario(String email, String senha) {
-		this.email = email;
-		this.senha = senha;
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -68,12 +76,8 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public Long getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(Long telefone) {
-		this.telefone = telefone;
+	public Set<Role> getRoles() {
+		return roles;
 	}
 
 	@Override

@@ -2,6 +2,8 @@ package com.projeto.controlefinanceiro.services;
 
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -21,8 +23,6 @@ import com.projeto.controlefinanceiro.repositories.RoleRepository;
 import com.projeto.controlefinanceiro.repositories.UsuarioRepository;
 import com.projeto.controlefinanceiro.services.exceptions.DatabaseException;
 import com.projeto.controlefinanceiro.services.exceptions.ResourceNotFoundException;
-
-import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class UsuarioService {

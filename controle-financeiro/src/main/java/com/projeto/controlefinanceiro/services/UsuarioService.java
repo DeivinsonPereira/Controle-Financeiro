@@ -112,5 +112,5 @@ public class UsuarioService implements UserDetailsService {
 			logger.info("User found: " + username);
 			return usuario;
 		}
-	
+
 }

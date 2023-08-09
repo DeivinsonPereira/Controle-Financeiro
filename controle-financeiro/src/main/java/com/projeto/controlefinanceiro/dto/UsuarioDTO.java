@@ -3,13 +3,22 @@ package com.projeto.controlefinanceiro.dto;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import com.projeto.controlefinanceiro.entities.Usuario;
 
 public class UsuarioDTO {
 
 	
 	private Long id;
+	
+	@Size(min = 5, max = 60, message = "Deve ter entre 5 e 60 caracteres")
+	@NotBlank(message = "Campo requerido")
 	private String nome;
+	
+	@Email(message = "Favor entrar um email válido")
 	private String email;
 	
 	private Set<RoleDTO> roles = new HashSet<>();

@@ -2,6 +2,8 @@ package com.projeto.controlefinanceiro.controllers;
 
 import java.net.URI;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,8 +22,6 @@ import com.projeto.controlefinanceiro.dto.UsuarioDTO;
 import com.projeto.controlefinanceiro.dto.UsuarioInsertDTO;
 import com.projeto.controlefinanceiro.dto.UsuarioUpdateDTO;
 import com.projeto.controlefinanceiro.services.UsuarioService;
-
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/usuarios")

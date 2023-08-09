@@ -3,15 +3,15 @@ package com.projeto.controlefinanceiro.services.validation;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.projeto.controlefinanceiro.controllers.exceptions.FieldMessage;
 import com.projeto.controlefinanceiro.dto.UsuarioInsertDTO;
 import com.projeto.controlefinanceiro.entities.Usuario;
 import com.projeto.controlefinanceiro.repositories.UsuarioRepository;
-
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
 
 public class UsuarioInsertValidator implements ConstraintValidator<UsuarioInsertValid, UsuarioInsertDTO> {
 	

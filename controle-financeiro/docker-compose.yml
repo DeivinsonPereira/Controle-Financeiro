@@ -1,0 +1,54 @@
+version: "3.7"
+services:
+  # ====================================================================================================================
+  # POSTGRES SERVER
+  # ====================================================================================================================
+  controle-postgresql:
+    image: postgres:15-alpine
+    container_name: controle-postgresql
+    environment:
+      POSTGRES_DB: controle-financeiro
+      POSTGRES_PASSWORD: 1234567
+    ports:
+      - 5433:5432
+    volumes:
+      - ./.data/postgresql/data:/var/lib/postgresql/data
+    networks:
+      - controle-network
+  # ====================================================================================================================
+  # PGADMIN
+  # ====================================================================================================================
+  controle-pgadmin:
+    image: dpage/pgadmin4
+    container_name: controle-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: me@example.com
+      PGADMIN_DEFAULT_PASSWORD: 1234567
+    ports:
+      - 5050:80
+    volumes:
+      - ./.data/pgadmin:/var/lib/pgadmin
+    depends_on:
+      - controle-postgresql
+    networks:
+      - controle-network
+
+  backend:
+    build: .
+    container_name: controle-container
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://controle-postgresql:5432/controle-financeiro
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 1234567
+      SPRING_DATASOURCE_DRIVER-CLASS-NAME: org.postgresql.Driver
+      
+    ports:
+      - "8080:8080"
+    networks:
+      - controle-network
+    depends_on:
+      - controle-pgadmin
+    
+networks:
+  controle-network:
+    driver: bridge
